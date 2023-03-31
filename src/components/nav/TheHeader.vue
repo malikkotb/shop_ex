@@ -26,7 +26,25 @@
 
 <script>
 export default {
-  inject: ['isLoggedIn', 'login', 'logout', 'cart'],
+  // inject: ['isLoggedIn', 'login', 'logout', 'cart'],
+  computed: {
+    // I should define getters in the computed property of a component when using vuex
+    isLoggedIn() {
+      return this.$store.getters.loginStatus;
+    },
+    cart() {
+      return this.$store.getters.currentCart;
+    }
+
+  }, methods: {
+    // using actions / ...mapActions
+    login() {
+
+    },
+    logout() {
+      
+    }
+  }
 };
 </script>
 

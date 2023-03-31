@@ -15,10 +15,18 @@
 </template>
 
 <script>
-import ProductItem from '../components/products/ProductItem.vue';
-
+import ProductItem from "../components/products/ProductItem.vue";
+// import { mapGetters } from "vuex";
 export default {
-  inject: ['products'],
+  // inject: ['products'],
+  computed: {
+    products() {
+      return this.$store.getters.currentProducts;
+    },
+    // can also be done with:
+    // ...mapGetters(["currentProducts"]),
+  },
+
   components: {
     ProductItem,
   },
@@ -26,10 +34,10 @@ export default {
 </script>
 
 <style scoped>
-  ul {
-    list-style: none;
-    margin: 2rem auto;
-    padding: 0;
-    max-width: 40rem;
-  }
+ul {
+  list-style: none;
+  margin: 2rem auto;
+  padding: 0;
+  max-width: 40rem;
+}
 </style>
