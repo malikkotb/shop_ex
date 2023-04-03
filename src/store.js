@@ -18,7 +18,7 @@ const store = createStore({
         {
           id: "p2",
           image:
-            "https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Tent_at_High_Shelf_Camp_cropped.jpg/640px-Tent_at_High_Shelf_Camp_cropped.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Campement_-_20150802_15h44_%2810723%29.jpg/230px-Campement_-_20150802_15h44_%2810723%29.jpg",
           title: "Mountain Tent",
           description: "A tent for the ambitious outdoor tourist.",
           price: 129.99,
@@ -37,7 +37,8 @@ const store = createStore({
     };
   },
   mutations: {
-    addProductToCart(state, productData) {
+    addProductToCart(state, payload) {
+      const productData = payload;
       const productInCartIndex = state.cart.items.findIndex(
         (ci) => ci.productId === productData.id
       );
@@ -58,7 +59,8 @@ const store = createStore({
       state.cart.total += productData.price;
     },
 
-    removeProductFromCart(state, prodId) {
+    removeProductFromCart(state, payload) {
+      const prodId = payload.productId;
       const productInCartIndex = state.cart.items.findIndex(
         (cartItem) => cartItem.productId === prodId
       );
@@ -85,6 +87,12 @@ const store = createStore({
     logout(context) {
       context.commit("logout");
     },
+    addProduct(context, payload) {
+      context.commit('addProductToCart', payload);
+    },
+    removeProduct(context, payload) {
+      context.commit("removeProductFromCart", payload);
+    }
   },
 
   getters: {
@@ -97,6 +105,15 @@ const store = createStore({
     currentCart(state) {
       return state.cart;
     },
+    productsInCart(state) {
+      return state.cart.items;
+    },
+    totalSumInCart(state) {
+      return state.cart.total.toFixed(2);
+    },
+    quantityInCart(state) {
+      return state.cart.qty;
+    }  
   },
 });
 
