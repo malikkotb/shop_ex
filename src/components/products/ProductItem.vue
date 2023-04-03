@@ -26,17 +26,7 @@ export default {
     addToCart() {
       this.$store.dispatch("addProduct", {
         id: this.id,
-        image: this.image,
-        title: this.title,
-        price: this.price,
       }); // payload is 2nd argument
-
-      // this.addProductToCart({ // old method with provide and inject
-      //   id: this.id,
-      //   image: this.image,
-      //   title: this.title,
-      //   price: this.price,
-      // });
     },
   },
 };

@@ -88,7 +88,10 @@ const store = createStore({
       context.commit("logout");
     },
     addProduct(context, payload) {
-      context.commit('addProductToCart', payload);
+      const prodId = payload.id;
+      const products = context.getters['currentProducts'];
+      const product = products.find(prod => prod.id === prodId);
+      context.commit('addProductToCart', product);
     },
     removeProduct(context, payload) {
       context.commit("removeProductFromCart", payload);
